@@ -7,7 +7,7 @@ from sqlalchemy.dialects.postgresql import UUID, JSONB
 from typing import Optional, List
 import uuid
 
-from models.base import Base, TimestampMixin, UUIDMixin
+from .base import Base, TimestampMixin, UUIDMixin
 
 
 class Organization(Base, UUIDMixin, TimestampMixin):

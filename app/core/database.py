@@ -12,7 +12,7 @@ load_dotenv()
 # Database URL
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql+asyncpg://user:password@localhost:5432/email_campaign_db"
+    "postgresql+asyncpg://postgres:philly%402026@localhost:5432/aiplaybookin"
 )
 
 # Create async engine

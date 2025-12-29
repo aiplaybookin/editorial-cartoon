@@ -9,7 +9,7 @@ from datetime import datetime
 import uuid
 import enum
 
-from models.base import Base, TimestampMixin, UUIDMixin
+from .base import Base, TimestampMixin, UUIDMixin
 
 
 class CampaignStatus(str, enum.Enum):

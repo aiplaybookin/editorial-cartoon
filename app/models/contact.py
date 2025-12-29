@@ -8,7 +8,7 @@ from typing import Optional, List
 from datetime import datetime
 import uuid
 
-from models.base import Base, TimestampMixin, UUIDMixin
+from .base import Base, TimestampMixin, UUIDMixin
 
 
 class SubscriptionStatus(str):
