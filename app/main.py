@@ -8,6 +8,7 @@ from contextlib import asynccontextmanager
 from core.config import settings
 from core.database import init_db, close_db
 from api.v1.auth import router as auth_router
+from api.v1.campaigns import router as campaigns_router
 
 
 @asynccontextmanager
@@ -48,7 +49,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(auth_router, prefix="/api/v1")
-
+app.include_router(campaigns_router, prefix="/api/v1")
 
 # Health check endpoint
 @app.get("/health", tags=["Health"])

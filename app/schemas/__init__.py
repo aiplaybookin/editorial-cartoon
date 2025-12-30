@@ -15,7 +15,23 @@ from .auth import (
     ErrorResponse,
 )
 
+from .campaign import (
+    CampaignStatusEnum,
+    CampaignGoalEnum,
+    ObjectiveTypeEnum,
+    KPINameEnum,
+    CampaignObjectiveCreate,
+    CampaignObjectiveUpdate,
+    CampaignObjectiveResponse,
+    CampaignCreate,
+    CampaignUpdate,
+    CampaignResponse,
+    CampaignListResponse,
+    CampaignScheduleRequest,
+    CampaignStatsResponse,
+)
 __all__ = [
+    # Auth
     "UserRegister",
     "UserLogin",
     "TokenRefresh",
@@ -27,4 +43,18 @@ __all__ = [
     "TokenResponse",
     "MessageResponse",
     "ErrorResponse",
+    # Campaign
+    "CampaignStatusEnum",
+    "CampaignGoalEnum",
+    "ObjectiveTypeEnum",
+    "KPINameEnum",
+    "CampaignObjectiveCreate",
+    "CampaignObjectiveUpdate",
+    "CampaignObjectiveResponse",
+    "CampaignCreate",
+    "CampaignUpdate",
+    "CampaignResponse",
+    "CampaignListResponse",
+    "CampaignScheduleRequest",
+    "CampaignStatsResponse",
 ]
