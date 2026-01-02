@@ -40,4 +40,7 @@ dependencies = [
     "typing-inspection==0.4.2",
     "uvicorn==0.40.0",
     "bcrypt==3.2.2",
+    "anthropic==0.75.0",
+    "redis==7.1.0",
+    "celery==5.6.1",
 ]

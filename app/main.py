@@ -9,6 +9,7 @@ from core.config import settings
 from core.database import init_db, close_db
 from api.v1.auth import router as auth_router
 from api.v1.campaigns import router as campaigns_router
+from api.v1.ai_generation import router as ai_generation_router
 
 
 @asynccontextmanager
@@ -50,6 +51,7 @@ app.add_middleware(
 # Include routers
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(campaigns_router, prefix="/api/v1")
+app.include_router(ai_generation_router, prefix="/api/v1")
 
 # Health check endpoint
 @app.get("/health", tags=["Health"])
@@ -59,7 +61,8 @@ async def health_check():
         "status": "healthy",
         "app_name": settings.APP_NAME,
         "version": settings.APP_VERSION,
-        "environment": settings.ENVIRONMENT
+        "environment": settings.ENVIRONMENT,
+        "anthropic_configured": bool(settings.ANTHROPIC_API_KEY)
     }
 
 
@@ -70,7 +73,13 @@ async def root():
     return {
         "message": "Welcome to Email Campaign Manager API",
         "docs": "/docs",
-        "health": "/health"
+        "health": "/health",
+        "features": [
+            "AI-powered email generation",
+            "Campaign management",
+            "Multi-tenant architecture",
+            "Role-based access control"
+        ]
     }
 
 

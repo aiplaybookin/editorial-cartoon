@@ -61,3 +61,63 @@ app/
 │       ├── auth.py (already created)
 │       └── campaigns.py (new)
 ```
+
+## Step 4: AI Generation Service and API
+
+To do this, we need to create the following files:
+
+```
+app/
+├── schemas/
+│   ├── __init__.py
+│   ├── auth.py (existing)
+│   ├── campaign.py (existing)
+│   └── ai_generation.py (new)
+├── services/
+│   ├── __init__.py
+│   ├── auth_service.py (existing)
+│   ├── campaign_service.py (existing)
+│   └── ai_generation_service.py (new)
+├── workers/
+│   ├── __init__.py
+│   ├── celery_app.py (new)
+│   └── ai_generation_tasks.py (new)
+├── utils/
+│   ├── __init__.py
+│   └── prompts.py (new)
+└── api/
+    └── v1/
+        ├── __init__.py
+        ├── auth.py (existing)
+        ├── campaigns.py (existing)
+        └── ai_generation.py (new)
+```
+#### Celery
+#### Redis
+Install the actual Redis Server application for the client to connect to.
+1. Install Redis Server using Homebrew:
+```brew install redis```
+2. Start the Server
+```brew services start redis```
+3. Run Celery again
+```./run_celery.sh```
+
+```
+# 1. Navigate to the script's directory (if not already there)
+cd /path/to/your/project
+
+# 2. Activate your virtual environment (if using one)
+source venv/bin/activate # Or wherever your venv is located
+
+# 3. Make the script executable
+chmod +x run_celery.sh
+
+# 4. Run the script
+./run_celery.sh
+```
+
+CELERY_WORKER=true PYTHONPATH=app uv run celery -A workers.celery_app worker --loglevel=info --queues=ai_generation --concurrency=2 --pool=solo
+
+
+ps aux | grep python
+

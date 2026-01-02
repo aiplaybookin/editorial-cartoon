@@ -53,6 +53,9 @@ class Settings(BaseSettings):
     
     # Redis (for token blacklist)
     REDIS_URL: str = "redis://localhost:6379/0"
+
+    # Anthropic API
+    ANTHROPIC_API_KEY: str = ""  # Set in .env
     
     class Config:
         env_file = ".env"

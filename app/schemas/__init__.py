@@ -30,6 +30,24 @@ from .campaign import (
     CampaignScheduleRequest,
     CampaignStatsResponse,
 )
+
+from .ai_generation import (
+    AIJobStatus,
+    AIJobType,
+    ToneEnum,
+    LengthEnum,
+    PersonalizationLevel,
+    AIGenerationOptions,
+    AIGenerationRequest,
+    AIRefinementRequest,
+    SubjectLineVariantsRequest,
+    EmailVariant,
+    AIGenerationResponse,
+    SubjectLineVariant,
+    SubjectLineVariantsResponse,
+    AIGenerationJobList,
+)
+
 __all__ = [
     # Auth
     "UserRegister",
@@ -57,4 +75,19 @@ __all__ = [
     "CampaignListResponse",
     "CampaignScheduleRequest",
     "CampaignStatsResponse",
+    # AI Generation
+    "AIJobStatus",
+    "AIJobType",
+    "ToneEnum",
+    "LengthEnum",
+    "PersonalizationLevel",
+    "AIGenerationOptions",
+    "AIGenerationRequest",
+    "AIRefinementRequest",
+    "SubjectLineVariantsRequest",
+    "EmailVariant",
+    "AIGenerationResponse",
+    "SubjectLineVariant",
+    "SubjectLineVariantsResponse",
+    "AIGenerationJobList",
 ]
