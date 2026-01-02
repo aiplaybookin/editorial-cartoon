@@ -47,6 +47,7 @@ uv run app/main.py
 CRUD operations, campaign management, and objectives handling. To do this, we need to create the following files:
 ```
 app/
+├── main.py (update)
 ├── schemas/
 │   ├── __init__.py (update)
 │   ├── auth.py (already created)
@@ -68,6 +69,8 @@ To do this, we need to create the following files:
 
 ```
 app/
+├── main.py (update)
+├── run_celery.sh (new)
 ├── schemas/
 │   ├── __init__.py
 │   ├── auth.py (existing)
@@ -85,6 +88,8 @@ app/
 ├── utils/
 │   ├── __init__.py
 │   └── prompts.py (new)
+├── tests/
+│   └── integration.py (new)
 └── api/
     └── v1/
         ├── __init__.py
