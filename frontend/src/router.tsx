@@ -8,6 +8,8 @@ import { SignupPage } from '@/pages/auth/SignupPage';
 import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage';
 import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage';
 import { DashboardPage } from '@/pages/dashboard/DashboardPage';
+import { CampaignsListPage } from '@/pages/campaigns/CampaignsListPage';
+import { CampaignCreatePage } from '@/pages/campaigns/CampaignCreatePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 
 /**
@@ -42,6 +44,22 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <DashboardPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/campaigns',
+    element: (
+      <ProtectedRoute>
+        <CampaignsListPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/campaigns/new',
+    element: (
+      <ProtectedRoute>
+        <CampaignCreatePage />
       </ProtectedRoute>
     ),
   },
