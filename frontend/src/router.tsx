@@ -5,6 +5,8 @@ import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import { HomePage } from '@/pages/landing/HomePage';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { SignupPage } from '@/pages/auth/SignupPage';
+import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage';
+import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage';
 import { DashboardPage } from '@/pages/dashboard/DashboardPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 
@@ -24,6 +26,14 @@ export const router = createBrowserRouter([
   {
     path: '/signup',
     element: <SignupPage />,
+  },
+  {
+    path: '/forgot-password',
+    element: <ForgotPasswordPage />,
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPasswordPage />,
   },
 
   // Protected routes
