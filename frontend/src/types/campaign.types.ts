@@ -41,6 +41,10 @@ export interface Campaign {
   status: CampaignStatus;
   organization_id: string;
   user_id: string;
+  primary_goal: string;
+  target_audience_description?: string;
+  success_criteria?: string;
+  estimated_recipients?: number;
   target_audience?: string;
   scheduled_at?: string;
   sent_at?: string;
@@ -72,7 +76,7 @@ export interface CampaignUpdate {
  * Campaign list response
  */
 export interface CampaignListResponse {
-  items: Campaign[];
+  campaigns: Campaign[];
   total: number;
   page: number;
   per_page: number;

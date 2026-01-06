@@ -20,7 +20,7 @@ export const CampaignsListPage = () => {
     status: statusFilter || undefined,
   });
 
-  const campaigns = data?.items || [];
+  const campaigns = data?.campaigns || [];
   const totalPages = data?.pages || 1;
 
   const statusOptions = [

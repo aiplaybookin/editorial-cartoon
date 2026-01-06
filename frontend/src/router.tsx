@@ -10,6 +10,7 @@ import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage';
 import { DashboardPage } from '@/pages/dashboard/DashboardPage';
 import { CampaignsListPage } from '@/pages/campaigns/CampaignsListPage';
 import { CampaignCreatePage } from '@/pages/campaigns/CampaignCreatePage';
+import { CampaignDetailPage } from '@/pages/campaigns/CampaignDetailPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 
 /**
@@ -60,6 +61,14 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <CampaignCreatePage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/campaigns/:id',
+    element: (
+      <ProtectedRoute>
+        <CampaignDetailPage />
       </ProtectedRoute>
     ),
   },

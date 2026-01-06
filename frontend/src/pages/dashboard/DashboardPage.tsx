@@ -112,9 +112,9 @@ export const DashboardPage = () => {
                     <div key={i} className="h-16 bg-gray-200 rounded animate-pulse" />
                   ))}
                 </div>
-              ) : recentCampaigns && recentCampaigns.items.length > 0 ? (
+              ) : recentCampaigns && recentCampaigns.campaigns.length > 0 ? (
                 <div className="space-y-3">
-                  {recentCampaigns.items.map((campaign) => (
+                  {recentCampaigns.campaigns.map((campaign) => (
                     <Link
                       key={campaign.id}
                       to={ROUTES.CAMPAIGN_DETAIL(campaign.id)}
@@ -149,7 +149,7 @@ export const DashboardPage = () => {
                 </div>
               )}
 
-              {recentCampaigns && recentCampaigns.items.length > 0 && (
+              {recentCampaigns && recentCampaigns.campaigns.length > 0 && (
                 <Link to={ROUTES.CAMPAIGNS}>
                   <Button variant="outline" className="w-full mt-4">
                     View All Campaigns
