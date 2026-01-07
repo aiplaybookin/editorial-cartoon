@@ -1,7 +1,17 @@
 """
 Celery configuration for async tasks
 """
+import os
+from pathlib import Path
 from celery import Celery
+
+# Ensure .env is loaded before importing settings
+from dotenv import load_dotenv
+
+# Load .env from project root
+env_path = Path(__file__).parent.parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
 from core.config import settings
 
 # Create Celery app
