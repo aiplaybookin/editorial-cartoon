@@ -100,9 +100,12 @@ export interface GenerateEmailRequest {
  * Generate email response
  */
 export interface GenerateEmailResponse {
-  job_id: string;
+  id: string;
+  campaign_id: string;
   status: JobStatus;
-  message: string;
+  job_type: string;
+  estimated_completion_seconds?: number;
+  created_at: string;
 }
 
 /**

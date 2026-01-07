@@ -19,6 +19,7 @@ import { ROUTES } from '@/utils/constants';
 import { CampaignAIGeneration } from '@/components/campaigns/CampaignAIGeneration';
 import { CampaignObjectivesManager } from '@/components/campaigns/CampaignObjectivesManager';
 import { CampaignEditDialog } from '@/components/campaigns/CampaignEditDialog';
+import { CampaignContentReview } from '@/components/campaigns/CampaignContentReview';
 import { format } from 'date-fns';
 import { toast } from 'react-hot-toast';
 import { AxiosError } from 'axios';
@@ -280,15 +281,7 @@ export const CampaignDetailPage = () => {
                     </TabsContent>
 
                     <TabsContent value="content" className="mt-6">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Content Review</CardTitle>
-                                <CardDescription>Review and approve selected email content.</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-gray-500 italic">Select a generated variant to enable content review.</p>
-                            </CardContent>
-                        </Card>
+                        <CampaignContentReview campaignId={id!} />
                     </TabsContent>
 
                     <TabsContent value="analytics" className="mt-6">

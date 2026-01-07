@@ -39,7 +39,7 @@ export const CampaignAIGeneration = ({ campaignId }: CampaignAIGenerationProps) 
     const generateMutation = useMutation({
         mutationFn: (data: GenerateEmailRequest) => aiApi.generateEmail(campaignId, data),
         onSuccess: (data) => {
-            setGeneratedContent({ id: data.job_id, status: 'pending' }); // Store job ID
+            setGeneratedContent({ id: data.id, status: 'pending' }); // Store job ID
             toast.success('AI generation started!');
         },
         onError: (error: any) => {
