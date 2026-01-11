@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings
 from pydantic import field_validator
 from typing import List, Union, Optional
 import secrets
+from pathlib import Path
 
 
 class Settings(BaseSettings):
@@ -56,9 +57,11 @@ class Settings(BaseSettings):
 
     # Anthropic API
     ANTHROPIC_API_KEY: str = ""  # Set in .env
-    
+
     class Config:
-        env_file = ".env"
+        # Get the project root directory (parent of app/)
+        env_file = str(Path(__file__).parent.parent.parent / ".env")
+        env_file_encoding = 'utf-8'
         case_sensitive = True
         extra = "ignore"
 

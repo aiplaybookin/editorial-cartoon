@@ -3,6 +3,18 @@ import asyncio
 import time
 import json
 import re
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env file
+env_path = Path(__file__).parent.parent / ".env"
+if env_path.exists():
+    load_dotenv(env_path)
+    print(f"✓ Loaded environment from {env_path}")
+else:
+    print(f"⚠ Warning: .env file not found at {env_path}")
+    print("  Please create .env from .env.example and set ANTHROPIC_API_KEY")
 
 async def complete_workflow_test():
     """
@@ -14,6 +26,16 @@ async def complete_workflow_test():
     5. Refine content
     6. Generate subject lines
     """
+
+    # Check environment setup
+    api_key = os.getenv("ANTHROPIC_API_KEY", "")
+    if not api_key or not api_key.startswith("sk-"):
+        print("✗ Error: ANTHROPIC_API_KEY not set properly in .env file")
+        print("  Expected format: ANTHROPIC_API_KEY=sk-ant-api03-...")
+        print("  Please set it in .env file before running tests")
+        return
+    print(f"✓ ANTHROPIC_API_KEY found (starts with: {api_key[:15]}...)")
+
     base_url = "http://localhost:8000/api/v1"
     
     async with httpx.AsyncClient(timeout=120.0) as client:
