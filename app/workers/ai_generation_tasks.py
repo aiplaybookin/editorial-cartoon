@@ -10,11 +10,20 @@ import uuid
 
 
 class AsyncTask(Task):
-    """Base task with async support"""
-    
+    """Base task with async support - uses existing event loop or creates a new one"""
+
     def __call__(self, *args, **kwargs):
-        return asyncio.run(self.run(*args, **kwargs))
-    
+        # Check if there's an existing event loop
+        try:
+            loop = asyncio.get_event_loop()
+            if loop.is_closed():
+                raise RuntimeError("Event loop is closed")
+            # Use existing loop
+            return loop.run_until_complete(self.run(*args, **kwargs))
+        except RuntimeError:
+            # No event loop exists or it's closed, create a new one
+            return asyncio.run(self.run(*args, **kwargs))
+
     async def run(self, *args, **kwargs):
         raise NotImplementedError()
 

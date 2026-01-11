@@ -1,7 +1,7 @@
 """
 AI Generation endpoints for email content creation
 """
-from fastapi import APIRouter, Depends, HTTPException, status, Query, BackgroundTasks
+from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 import uuid
@@ -48,7 +48,6 @@ router = APIRouter(tags=["AI Generation"])
 async def generate_email_content(
     campaign_id: str,
     generation_request: AIGenerationRequest,
-    background_tasks: BackgroundTasks,
     current_user: User = Depends(require_member),
     db: AsyncSession = Depends(get_db)
 ):
@@ -90,13 +89,10 @@ async def generate_email_content(
             user_id=current_user.id,
             generation_request=generation_request
         )
-        
-        # Trigger background processing
-        background_tasks.add_task(
-            process_email_generation.delay,
-            str(job.id)
-        )
-        
+
+        # Trigger background processing via Celery
+        process_email_generation.delay(str(job.id))
+
         # Update campaign status to generating
         campaign_service = CampaignService(db)
         from schemas.campaign import CampaignStatusEnum
@@ -374,7 +370,6 @@ async def refine_email_content(
     campaign_id: str,
     template_id: str,
     refinement_request: AIRefinementRequest,
-    background_tasks: BackgroundTasks,
     current_user: User = Depends(require_member),
     db: AsyncSession = Depends(get_db)
 ):
@@ -419,11 +414,8 @@ async def refine_email_content(
             refinement_request=refinement_request
         )
         
-        # Trigger background processing
-        background_tasks.add_task(
-            process_email_refinement.delay,
-            str(job.id)
-        )
+        # Trigger background processing via Celery
+        process_email_refinement.delay(str(job.id))
         
         return AIGenerationResponse(
             id=job.id,
@@ -455,7 +447,6 @@ async def refine_email_content(
 async def generate_subject_line_variants(
     campaign_id: str,
     request_data: SubjectLineVariantsRequest,
-    background_tasks: BackgroundTasks,
     current_user: User = Depends(require_member),
     db: AsyncSession = Depends(get_db)
 ):
@@ -499,11 +490,8 @@ async def generate_subject_line_variants(
             request_data=request_data
         )
         
-        # Trigger background processing
-        background_tasks.add_task(
-            process_subject_line_generation.delay,
-            str(job.id)
-        )
+        # Trigger background processing via Celery
+        process_subject_line_generation.delay(str(job.id))
         
         return AIGenerationResponse(
             id=job.id,
@@ -535,7 +523,6 @@ async def generate_subject_line_variants(
 async def regenerate_email_content(
     campaign_id: str,
     generation_request: AIGenerationRequest,
-    background_tasks: BackgroundTasks,
     current_user: User = Depends(require_member),
     db: AsyncSession = Depends(get_db)
 ):
@@ -585,13 +572,10 @@ async def regenerate_email_content(
             user_id=current_user.id,
             generation_request=generation_request
         )
-        
-        # Trigger background processing
-        background_tasks.add_task(
-            process_email_generation.delay,
-            str(job.id)
-        )
-        
+
+        # Trigger background processing via Celery
+        process_email_generation.delay(str(job.id))
+
         return AIGenerationResponse(
             id=job.id,
             campaign_id=campaign_id,
